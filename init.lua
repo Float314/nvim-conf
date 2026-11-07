@@ -25,6 +25,10 @@ require("lazy").setup({
   { import = "plugins" },
 }, lazy_config)
 
+if not vim.lsp.is_enabled("clangd") then
+  vim.lsp.enable("clangd")
+end
+
 -- load theme
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
