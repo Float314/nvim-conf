@@ -29,6 +29,18 @@ if not vim.lsp.is_enabled("clangd") then
   vim.lsp.enable("clangd")
 end
 
+-- bash 
+-- Register the configuration natively
+vim.lsp.config.bashls = {
+  cmd = { 'bash-language-server', 'start' },
+  filetypes = { 'bash', 'sh' }
+}
+
+-- Enable it globally
+vim.lsp.enable('bashls')
+
+-- cmake 
+vim.lsp.enable("cmake")
 -- load theme
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
