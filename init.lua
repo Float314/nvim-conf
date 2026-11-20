@@ -1,6 +1,13 @@
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
 vim.g.mapleader = " "
 
+-- Mason root/bin are needed by Kotlin LSP and by the LSP executables.
+vim.env.MASON = vim.fn.stdpath "data" .. "/mason"
+local mason_bin = vim.env.MASON .. "/bin"
+if not vim.env.PATH:find(mason_bin, 1, true) then
+  vim.env.PATH = mason_bin .. ":" .. vim.env.PATH
+end
+
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
@@ -25,22 +32,22 @@ require("lazy").setup({
   { import = "plugins" },
 }, lazy_config)
 
-if not vim.lsp.is_enabled("clangd") then
-  vim.lsp.enable("clangd")
+if not vim.lsp.is_enabled "clangd" then
+  vim.lsp.enable "clangd"
 end
 
--- bash 
+-- bash
 -- Register the configuration natively
 vim.lsp.config.bashls = {
-  cmd = { 'bash-language-server', 'start' },
-  filetypes = { 'bash', 'sh' }
+  cmd = { "bash-language-server", "start" },
+  filetypes = { "bash", "sh" },
 }
 
 -- Enable it globally
-vim.lsp.enable('bashls')
+vim.lsp.enable "bashls"
 
--- cmake 
-vim.lsp.enable("cmake")
+-- cmake
+vim.lsp.enable "neocmake"
 -- load theme
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")

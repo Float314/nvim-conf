@@ -1,11 +1,11 @@
-{
+return {
   "AlexandrosAlexiou/kotlin.nvim",
   ft = { "kotlin" },
   dependencies = {
     "mason.nvim",
-    "mason-lspconfig.nvim",
-    "oil.nvim",
-    "trouble.nvim",
+    "mason-org/mason-lspconfig.nvim",
+    "stevearc/oil.nvim",
+    "folke/trouble.nvim",
   },
   opts = {
     -- Optional: increase heap size for large Gradle projects
@@ -19,4 +19,3 @@
     },
   },
 }
-
